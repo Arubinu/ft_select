@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2013/11/23 22:20:19 by apergens         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:21:06 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strnew(size_t size)
 {
 	char	*s;
 
-	s = (char *)malloc(sizeof(char)* (size + 1));
+	s = (char *)malloc(sizeof(char) * (size + 1));
 	if (s == NULL)
 		return (NULL);
 	ft_memset(s, '\0', size + 1);

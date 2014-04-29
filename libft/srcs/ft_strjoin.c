@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2013/11/26 13:56:04 by apergens         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:20:48 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 	len = ft_strlen(s1);
-	s3 = (char *)malloc(sizeof(char)* (len + ft_strlen(s2) + 1));
+	s3 = (char *)malloc(sizeof(char) * (len + ft_strlen(s2) + 1));
 	if (s3 == NULL)
 		return (NULL);
 	ft_strcpy(s3, s1);

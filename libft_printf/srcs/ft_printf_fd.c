@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pf_s.c                                          :+:      :+:    :+:   */
+/*   ft_printf_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 01:47:01 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/03 02:05:54 by apergens         ###   ########.fr       */
+/*   Created: 2013/12/17 13:34:40 by apergens          #+#    #+#             */
+/*   Updated: 2014/03/18 12:48:28 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft_printf.h"
 
-char	*ft_pf_s(va_list ap, char *opts, int *ret)
+int		ft_printf_fd(const char *format, int fd, ...)
 {
-	char	*str;
+	va_list		ap;
+	char		*ptr;
+	size_t		len;
 
-	if (opts == NULL)
-		return ("");
-	str = va_arg(ap, char *);
-	*ret = ft_strlen(str);
-	return (str);
+	len = 0;
+	ptr = (char *)format;
+	va_start(ap, fd);
+	while (*ptr && (len += ft_get_v_arg(ap, &ptr, fd)))
+		;
+	va_end(ap);
+	return ((int)len);
 }

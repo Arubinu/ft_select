@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2013/11/26 13:53:15 by apergens         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:21:16 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strsub(const char *s, unsigned int start, size_t len)
 	char	*s2;
 
 	i = -1;
-	s2 = (char *)malloc(sizeof(char)* (len + 1));
+	s2 = (char *)malloc(sizeof(char) * (len + 1));
 	if (s == NULL || s2 == NULL)
 		return (NULL);
 	while (++i < (int)len)

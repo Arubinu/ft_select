@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pf_f.c                                          :+:      :+:    :+:   */
+/*   ft_strcdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 01:47:01 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/03 02:05:53 by apergens         ###   ########.fr       */
+/*   Created: 2013/09/19 09:16:55 by apergens          #+#    #+#             */
+/*   Updated: 2014/04/15 21:42:03 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-char	*ft_pf_f(va_list ap, char *opts, int *ret)
+char	*ft_strcdup(const char *s1, int c)
 {
-	char	*str;
+	int		len;
+	char	*s2;
 
-	if (opts == NULL)
-		return ("");
-	str = ft_ftoa(va_arg(ap, double));
-	*ret = ft_strlen(str);
-	return (str);
+	len = ft_strcchr(s1, c);
+	len = (len == -1) ? (int)ft_strlen(s1) : len;
+	s2 = (char *)malloc(sizeof(char) * (len + 1));
+	if (s2 == NULL)
+		return (NULL);
+	ft_strncpy(s2, (char *)s1, len);
+	*(s2 + len) = '\0';
+	return (s2);
 }

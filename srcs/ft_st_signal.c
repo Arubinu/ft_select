@@ -6,44 +6,11 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/11 02:54:27 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:39:32 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftselect.h"
-
-static int		ft_st_signal_init(void);
-static void		ft_st_signal_set(struct termios **config);
-static int		ft_st_signal_suspend(struct termios **config, int n);
-
-void			ft_st_signal(int n)
-{
-	static struct termios	*config;
-
-	if (config == NULL || n == SIGTSTP || n == SIGCONT)
-	{
-		if (ft_st_signal_suspend(&config, n))
-			return ;
-		if (n == SIGCONT)
-			ft_st_putcirc(0, NULL, NULL, 0);
-	}
-	else if (n == 28 || n == 11)
-		ft_st_putcirc(0, NULL, NULL, 0);
-	else
-	{
-		if (!DEBUG)
-		{
-			ft_st_clear();
-			ft_st_cmdgoto(0, 0);
-		}
-		else
-			ft_printf("-[%d]-", n);
-		ft_st_cmdput("ve");
-		tcsetattr(STDIN_FILENO, TCSANOW, config);
-		free(config);
-		exit(0);
-	}
-}
 
 static int		ft_st_signal_init(void)
 {
@@ -117,4 +84,30 @@ static int		ft_st_signal_suspend(struct termios **config, int n)
 	ft_st_cmdput("vi");
 	ft_st_signal_set(config);
 	return (0);
+}
+
+void			ft_st_signal(int n)
+{
+	static struct termios	*config;
+
+	if (config == NULL || n == SIGTSTP || n == SIGCONT)
+	{
+		if (ft_st_signal_suspend(&config, n))
+			return ;
+		if (n == SIGCONT)
+			ft_st_putcirc(0, NULL, NULL, 0);
+	}
+	else if (n == 28 || n == 11)
+		ft_st_putcirc(0, NULL, NULL, 0);
+	else
+	{
+		if (DEBUG)
+			ft_printf("-[%d]-", n);
+		ft_st_cmdput("ve");
+		ft_st_cmdput("te");
+		tcsetattr(STDIN_FILENO, TCSANOW, config);
+		free(config);
+		if (n != -1)
+			exit(0);
+	}
 }

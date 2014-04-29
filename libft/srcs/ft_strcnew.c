@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pf_c.c                                          :+:      :+:    :+:   */
+/*   ft_strcnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 01:47:28 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/03 02:05:48 by apergens         ###   ########.fr       */
+/*   Created: 2013/12/25 23:14:21 by apergens          #+#    #+#             */
+/*   Updated: 2014/03/03 04:20:46 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-char	*ft_pf_c(va_list ap, char *opts, int *ret)
+char	*ft_strcnew(char c, size_t n)
 {
 	char	*str;
 
-	if (opts == NULL)
-		return ("");
-	str = (char *)malloc(sizeof(char) * 2);
-	*str = (*opts == '%') ? '%' : va_arg(ap, int);
-	*(str + 1) = '\0';
-	*ret = 1;
+	if ((str = (char *)malloc(sizeof(char) * (n + 1))) == NULL)
+		return (NULL);
+	ft_memset((void *)str, c, n);
+	*(str + n) = '\0';
 	return (str);
 }

@@ -6,13 +6,23 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/05 19:46:25 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/11 03:02:28 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:09:00 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftselect.h"
 
-static int		ft_st_cursor(char *str, int argc, int end);
+static int		ft_st_cursor(char *str, int argc, int end)
+{
+	int		ret;
+	int		len;
+
+	len = ft_st_termsize(0) / ft_st_columns(argc);
+	ret = (len - ft_strlen(str)) / 2;
+	if (end)
+		ret = len - (ret + ft_strlen(str));
+	return (ret);
+}
 
 int				ft_st_putstr(char *str, int argc, int col, int pos)
 {
@@ -39,16 +49,4 @@ int				ft_st_putstr(char *str, int argc, int col, int pos)
 	if ((nbr = ft_st_cursor(str, argc, 1)) > 0)
 		ft_putchar_loop_fd(' ', isatty(STDOUT_FILENO), nbr);
 	return (1);
-}
-
-static int		ft_st_cursor(char *str, int argc, int end)
-{
-	int		ret;
-	int		len;
-
-	len = ft_st_termsize(0) / ft_st_columns(argc);
-	ret = (len - ft_strlen(str)) / 2;
-	if (end)
-		ret = len - (ret + ft_strlen(str));
-	return (ret);
 }

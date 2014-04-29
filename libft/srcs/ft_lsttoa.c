@@ -3,17 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lsttoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2014/02/08 16:46:45 by rkorimba         ###   ########.fr       */
+/*   Updated: 2014/04/15 21:41:29 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_lsttoa_normal(t_list *lst, char **str);
-static void		ft_lsttoa_reverse(t_list *lst, char **str);
+static void		ft_lsttoa_normal(t_list *lst, char **str)
+{
+	while (lst != NULL)
+	{
+		if (lst->content != NULL)
+			ft_strcat(*str, (char *)lst->content);
+		if ((lst = lst->next) != NULL)
+			*(*str + ft_strlen(*str)) = '\n';
+	}
+	return ;
+}
+
+static void		ft_lsttoa_reverse(t_list *lst, char **str)
+{
+	if (lst->next != NULL)
+		ft_lsttoa_reverse(lst->next, str);
+	if (**str != '\0')
+	{
+		if (lst->content != NULL)
+			ft_strcat(*str, (char *)lst->content);
+		*(*str + ft_strlen(*str)) = '\n';
+	}
+	else if (lst->content != NULL)
+		ft_strcpy(*str, (char *)lst->content);
+	return ;
+}
 
 char			*ft_lsttoa(t_list *lst, int reverse)
 {
@@ -36,31 +60,4 @@ char			*ft_lsttoa(t_list *lst, int reverse)
 	else if (len)
 		ft_lsttoa_normal(lst, &str);
 	return (str);
-}
-
-static void		ft_lsttoa_normal(t_list *lst, char **str)
-{
-	while (lst != NULL)
-	{
-		if (lst->content != NULL)
-			ft_strcat(*str, (char *)lst->content);
-		if ((lst = lst->next) != NULL)
-			*(*str + ft_strlen(*str)) = '\n';
-	}
-	return ;
-}
-
-static void		ft_lsttoa_reverse(t_list *lst, char **str)
-{
-	if (lst->next != NULL)
-		ft_lsttoa_reverse(lst->next, str);
-	if (**str != '\0')
-	{
-		if (lst->content != NULL)
-			ft_strcat(*str, (char *)lst->content);
-			*(*str + ft_strlen(*str)) = '\n';
-	}
-	else if (lst->content != NULL)
-		ft_strcpy(*str, (char *)lst->content);
-	return ;
 }

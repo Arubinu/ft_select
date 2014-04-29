@@ -6,55 +6,11 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/11 21:08:32 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/12 16:46:34 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:25:24 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftselect.h"
-
-static t_search	*ft_st_search_create(t_choice **ch, char *str, int *nbr);
-static int		ft_st_search_deleg(t_search **list, int key);
-static t_choice	*ft_st_search_while(t_choice **ch, char *str, int *nbr);
-
-void			ft_st_search(t_choice **o, t_search **t, char *c)
-{
-	int					nbr;
-	int					key;
-	char				*str;
-
-	nbr = 0;
-	str = ft_ctoa(*c);
-	key = ft_st_getkey(c);
-	ft_st_search_deleg(t, key);
-	if (key != GKEY_RTN && key != GKEY_ESC)
-	{
-		if (*t == NULL && key == -1 && ft_isprint(*c) && *(c + 1) == 0)
-			*t = ft_st_search_create(o, str, &nbr);
-		else if (*t != NULL && (*t)->str != NULL)
-		{
-			if (key == GKEY_BSP && (nbr = ft_strlen((*t)->str)))
-				(*t)->str = ft_strfsub(&(*t)->str, 0, nbr - 1, 1);
-			else if (ft_strlen((*t)->str) < 10 && ft_isprint(*c))
-				(*t)->str = ft_strfjoin1(&(*t)->str, str, 1);
-			if (!(nbr = 0) && (*t)->str != NULL)
-				(*t)->first = ft_st_search_while(o, (*t)->str, &(*t)->nbr);
-		}
-	}
-	if (str != NULL)
-		free(str);
-	return ;
-}
-
-static t_search	*ft_st_search_create(t_choice **ch, char *str, int *nbr)
-{
-	t_search			*list;
-
-	list = (t_search *)malloc(sizeof(t_search));
-	list->str = ft_strtrim(str);
-	list->nbr = *nbr;
-	list->first = ft_st_search_while(ch, str, nbr);
-	return (list);
-}
 
 static int		ft_st_search_deleg(t_search **list, int key)
 {
@@ -103,4 +59,44 @@ static t_choice	*ft_st_search_while(t_choice **ch, char *str, int *nbr)
 		free(search);
 	*nbr = 0;
 	return (ptr);
+}
+
+static t_search	*ft_st_search_create(t_choice **ch, char *str, int *nbr)
+{
+	t_search			*list;
+
+	list = (t_search *)malloc(sizeof(t_search));
+	list->str = ft_strtrim(str);
+	list->nbr = *nbr;
+	list->first = ft_st_search_while(ch, str, nbr);
+	return (list);
+}
+
+int				ft_st_search(t_choice **o, t_search **t, char *c)
+{
+	int					nbr;
+	int					key;
+	char				*str;
+
+	nbr = 0;
+	str = ft_ctoa(*c);
+	key = ft_st_getkey(c);
+	ft_st_search_deleg(t, key);
+	if (key != GKEY_RTN && key != GKEY_ESC)
+	{
+		if (*t == NULL && key == -1 && ft_isprint(*c) && *(c + 1) == 0)
+			*t = ft_st_search_create(o, str, &nbr);
+		else if (*t != NULL && (*t)->str != NULL)
+		{
+			if (key == GKEY_BSP && (nbr = ft_strlen((*t)->str)))
+				(*t)->str = ft_strfsub(&(*t)->str, 0, nbr - 1, 1);
+			else if (ft_strlen((*t)->str) < 10 && ft_isprint(*c))
+				(*t)->str = ft_strfjoin1(&(*t)->str, str, 1);
+			if (!(nbr = 0) && (*t)->str != NULL)
+				(*t)->first = ft_st_search_while(o, (*t)->str, &(*t)->nbr);
+		}
+	}
+	if (str != NULL)
+		free(str);
+	return (1);
 }

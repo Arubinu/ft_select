@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   libft_match.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/17 13:34:40 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/03 02:05:57 by apergens         ###   ########.fr       */
+/*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
+/*   Updated: 2014/02/18 11:24:55 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#ifndef LIBFT_MATCH_H
+# define LIBFT_MATCH_H
 
-int		ft_printf(const char *format, ...)
-{
-	va_list		ap;
-	char		*ptr;
-	char		*str;
-	size_t		len;
+int		ft_match(char *s1, char *s2);
+int		ft_nmatch(char *s1, char *s2);
 
-	len = 0;
-	ptr = (char *)format;
-	va_start(ap, format);
-	while (*ptr && (len += ft_get_v_arg(ap, &ptr, &str, 1)))
-		;
-	va_end(ap);
-	return ((int)len);
-}
+#endif

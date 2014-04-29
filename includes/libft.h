@@ -6,23 +6,20 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/11 23:14:38 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:00:11 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <stdlib.h>
 # include <unistd.h>
 
-# include "libftprintf.h"
+# include "t_list.h"
+# include "libft_printf.h"
 
-typedef struct	s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}				t_list;
+# define BUFF_SIZE 42
 
 /*
 ** Convert a string to number
@@ -58,6 +55,12 @@ size_t	ft_strclen(const char *s, int c);
 */
 
 size_t	ft_ilen(int n);
+
+/*
+** Count the number of string in array
+*/
+
+int		ft_tablen(char **arr);
 
 /*
 ** search characters in a string
@@ -98,7 +101,6 @@ char	*ft_strcat(char *s1, const char *s2);
 char	*ft_strncat(char *s1, const char *s2, size_t n);
 size_t	ft_strlcat(char *s1, const char *s2, size_t n);
 
-
 int		ft_strcchr(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
@@ -118,10 +120,17 @@ char	*ft_strcpy(char *s1, const char *s2);
 char	*ft_strncpy(char *s1, const char *s2, size_t n);
 
 /*
+** Replace one character to an other character in character string
+*/
+
+void	ft_strreplace(char *str, char c1, char c2);
+
+/*
 ** Duplicating a character string
 */
 
 char	*ft_strdup(const char *s1);
+char	*ft_strcdup(const char *s1, int c);
 
 /*
 ** Returns the string for the first occurrence found
@@ -143,12 +152,14 @@ int		ft_toupper(int c);
 
 void	*ft_memalloc(size_t size);
 void	ft_memdel(void **ap);
+void	*ft_realloc(void *ptr, size_t size);
 
 /*
 ** Create a character string, the empty or destroyed
 */
 
 char	*ft_strnew(size_t size);
+char	*ft_strcnew(char c, size_t n);
 void	ft_strdel(char **as);
 void	ft_strclr(char *s);
 
@@ -202,7 +213,7 @@ void	ft_putstr(const char *s);
 void	ft_putstr_fd(const char *s, int fd);
 void	ft_putendl(const char *s);
 void	ft_putendl_fd(const char *s, int fd);
-void	ft_putlst(t_list *lst, char *(*f)(int n), int reverse, int debug);
+void	ft_putlst(t_list *lst, char *(*f)(int n), int rev, int debug);
 
 /*
 ** Writing a character in the console
@@ -210,8 +221,8 @@ void	ft_putlst(t_list *lst, char *(*f)(int n), int reverse, int debug);
 
 void	ft_putchar(char c);
 void	ft_putchar_fd(char c, int fd);
-void	ft_putchar_loop(int c, int nbr);
-void	ft_putchar_loop_fd(int c, int fd, int nbr);
+void	ft_putchar_loop(char c, int nbr);
+void	ft_putchar_loop_fd(char c, int fd, int nbr);
 
 /*
 ** Writing a number in the console
@@ -221,9 +232,16 @@ void	ft_putnbr(int n);
 void	ft_putnbr_fd(int n, int fd);
 
 /*
+** Writing a string array in the console
+*/
+
+void	ft_puttabstr(char ***array);
+
+/*
 ** Fonctions with free memory
 */
 
+char	*ft_strfdup(char **s1, char *s2, int pfree);
 char	*ft_strfjoin1(char **s1, char *s2, int pfree);
 char	*ft_strfjoin2(char *s1, char **s2, int pfree);
 char	*ft_strfjoin(char **s1, char **s2, int pfree);

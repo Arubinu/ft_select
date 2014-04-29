@@ -6,7 +6,7 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/29 10:31:17 by apergens          #+#    #+#             */
-/*   Updated: 2013/12/08 04:45:09 by apergens         ###   ########.fr       */
+/*   Updated: 2014/02/16 05:07:43 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 int		ft_free_return(int ret, char **data)
 {
 	free(*data);
+	*data = NULL;
 	return (ret);
 }

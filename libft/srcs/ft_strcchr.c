@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 00:30:43 by apergens          #+#    #+#             */
-/*   Updated: 2013/11/23 15:15:26 by apergens         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:22:04 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int		ft_strcchr(const char *s, int c)
 			return (i - 1);
 	}
 	if (*(s + (i - 1)) == c)
-			return (i - 1);
+		return (i - 1);
 	return (-1);
 }

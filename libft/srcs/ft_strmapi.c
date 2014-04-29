@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2013/11/26 13:49:54 by apergens         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:21:00 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	i = -1;
 	if (s == NULL || f == NULL)
 		return (NULL);
-	s2 = (char *)malloc(sizeof(char)* (ft_strlen(s) + 1));
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	while (*(s + (++i)))
 		*(s2 + i) = (char)f((unsigned int)i, *(s + i));
 	return (s2);

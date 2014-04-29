@@ -6,11 +6,11 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 13:34:40 by apergens          #+#    #+#             */
-/*   Updated: 2013/12/18 13:13:21 by apergens         ###   ########.fr       */
+/*   Updated: 2014/02/18 11:28:48 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
 char	*ft_strins(char *s1, char *s2, size_t start, size_t len)
 {

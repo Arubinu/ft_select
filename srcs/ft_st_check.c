@@ -6,41 +6,11 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/09 07:02:52 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/11 04:50:01 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:15:36 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftselect.h"
-
-static int	ft_st_check_move(int key, t_choice **choice, int pos);
-static int	ft_st_check_overflow(int argc, int key, int pos, int pos2);
-static int	ft_st_check_target(int argc, int key, int *pos);
-
-void		ft_st_check(int argc, int key, t_choice **choice, int *pos)
-{
-	int		i;
-
-	i = -1;
-	if (ft_st_check_target(argc - 1, key, pos))
-		return ;
-	while ((key == GKEY_STAR || key == GKEY_DIV) && (*choice + (++i))->str)
-		(*choice + i)->check = (key == GKEY_STAR) ? 1 : 0;
-	while ((key == GKEY_PLUS || key == GKEY_MINUS) && (*choice + (++i))->str)
-	{
-		if (i == *pos)
-		{
-			if (ft_st_check_move(key, choice, *pos))
-				*pos += (key == GKEY_PLUS) ? 1 : -1;
-			break ;
-		}
-	}
-	if (key == GKEY_ESP || key == GKEY_DEL || key == GKEY_BSP)
-	{
-		if (key != GKEY_ESP)
-			ft_st_clear();
-	}
-	return ;
-}
 
 static int	ft_st_check_move(int key, t_choice **choice, int pos)
 {
@@ -117,4 +87,30 @@ static int	ft_st_check_target(int argc, int key, int *pos)
 			*pos = ft_st_check_overflow(argc, 1, *pos, pos2);
 	}
 	return (1);
+}
+
+void		ft_st_check(int argc, int key, t_choice **choice, int *pos)
+{
+	int		i;
+
+	i = -1;
+	if (ft_st_check_target(argc - 1, key, pos))
+		return ;
+	while ((key == GKEY_STAR || key == GKEY_DIV) && (*choice + (++i))->str)
+		(*choice + i)->check = (key == GKEY_STAR) ? 1 : 0;
+	while ((key == GKEY_PLUS || key == GKEY_MINUS) && (*choice + (++i))->str)
+	{
+		if (i == *pos)
+		{
+			if (ft_st_check_move(key, choice, *pos))
+				*pos += (key == GKEY_PLUS) ? 1 : -1;
+			break ;
+		}
+	}
+	if (key == GKEY_ESP || key == GKEY_DEL || key == GKEY_BSP)
+	{
+		if (key != GKEY_ESP)
+			ft_st_clear();
+	}
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/12 07:49:03 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:25:59 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,27 @@
 # include <sys/stat.h>
 
 # include "libft.h"
-# include "libftmatch.h"
-# include "libftprintf.h"
+# include "libft_match.h"
+# include "libft_printf.h"
 
-# define DEBUG 0
+# define DEBUG			0
 
-# define GKEY_BSP 8
-# define GKEY_TAB 9
-# define GKEY_RTN 13
-# define GKEY_ESC 27
-# define GKEY_ESP 32
-# define GKEY_LEFT 37
-# define GKEY_UP 38
-# define GKEY_RIGHT 39
-# define GKEY_DOWN 40
-# define GKEY_STAR 42
-# define GKEY_PLUS 43
-# define GKEY_MINUS 45
-# define GKEY_DOT 46
-# define GKEY_DIV 47
-# define GKEY_ZERO 48
-# define GKEY_DEL 51
+# define GKEY_BSP		8
+# define GKEY_TAB		9
+# define GKEY_RTN		13
+# define GKEY_ESC		27
+# define GKEY_ESP		32
+# define GKEY_LEFT		37
+# define GKEY_UP		38
+# define GKEY_RIGHT		39
+# define GKEY_DOWN		40
+# define GKEY_STAR		42
+# define GKEY_PLUS		43
+# define GKEY_MINUS		45
+# define GKEY_DOT		46
+# define GKEY_DIV		47
+# define GKEY_ZERO		48
+# define GKEY_DEL		51
 
 typedef struct	s_choice
 {
@@ -84,7 +84,7 @@ int				ft_st_putchoice(int argc, t_choice **choice, int print);
 void			ft_st_putcirc(int argc, t_choice **choice, int *pos, int key);
 void			ft_st_putmenu(int argc, t_choice **choice, int pos, int key);
 int				ft_st_putstr(char *str, int argc, int col, int pos);
-void			ft_st_search(t_choice **o, t_search **t, char *c);
+int				ft_st_search(t_choice **o, t_search **t, char *c);
 void			ft_st_signal(int n);
 int				ft_st_sound(int key);
 int				ft_st_termsize(int y);

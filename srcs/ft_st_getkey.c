@@ -6,13 +6,21 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/12 03:42:08 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:09:14 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftselect.h"
 
-static void		ft_st_getkey_debug(char *str);
+static void		ft_st_getkey_debug(char *str)
+{
+	if (DEBUG)
+	{
+		ft_printf("-[%d:%d:%d:%d]-", str[0], str[1], str[2], str[3]);
+		ft_st_signal(0);
+	}
+	return ;
+}
 
 int				ft_st_getkey(char *str)
 {
@@ -39,14 +47,4 @@ int				ft_st_getkey(char *str)
 	else if (ret == -1 && str[3] == 126)
 		ret = (str[0] == 27 && str[1] == 91 && str[2] == 51) ? GKEY_DEL : ret;
 	return (ret);
-}
-
-static void		ft_st_getkey_debug(char *str)
-{
-	if (DEBUG)
-	{
-		ft_printf("-[%d:%d:%d:%d]-", str[0], str[1], str[2], str[3]);
-		ft_st_signal(0);
-	}
-	return ;
 }

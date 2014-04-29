@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 02:17:16 by apergens          #+#    #+#             */
-/*   Updated: 2013/12/21 07:17:59 by apergens         ###   ########.fr       */
+/*   Created: 2014/02/13 19:08:51 by apergens          #+#    #+#             */
+/*   Updated: 2014/02/18 20:04:40 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
 char	*ft_ftoa(double n)
 {
 	int		one;
-	double	two;
 	int		state;
-	char	*ret;
 	char	*ptr;
+	char	*ret;
+	double	two;
 
 	state = (n < 0) ? 1 : 0;
 	ret = ft_itoa(n);

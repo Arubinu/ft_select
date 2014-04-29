@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 06:20:18 by apergens          #+#    #+#             */
-/*   Updated: 2013/11/26 11:47:03 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/15 21:39:44 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 int		ft_atoi(const char *str)
 {
 	int		result;
-	char	*trim;
 	int		negative;
+	char	*save;
+	char	*trim;
 
 	result = 0;
-	trim = ft_strtrim(str);
-	if (trim == NULL || !*trim)
+	trim = (str != NULL) ? ft_strtrim(str) : NULL;
+	if ((save = trim) == NULL || !*trim)
 		return (0);
 	negative = (*trim == '-') ? 1 : 0;
 	trim += (*trim == '-' || *trim == '+') ? 1 : 0;
@@ -33,5 +34,5 @@ int		ft_atoi(const char *str)
 		trim++;
 	}
 	result = negative ? result * -1 : result;
-	return (result);
+	return (ft_free_return(result, &save));
 }

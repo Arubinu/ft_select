@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_xtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apergens <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2013/12/21 10:46:23 by apergens         ###   ########.fr       */
+/*   Updated: 2014/02/18 11:28:29 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
 char	*ft_xtoa(int n, int on)
 {

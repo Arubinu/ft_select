@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftmatch.h                                       :+:      :+:    :+:   */
+/*   ft_puttabstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/09/26 04:36:20 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/12 06:03:54 by apergens         ###   ########.fr       */
+/*   Updated: 2014/02/19 04:40:27 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTMATCH_H
-# define LIBFTMATCH_H
+#include "libft.h"
 
-int		ft_match(char *s1, char *s2);
-int		ft_nmatch(char *s1, char *s2);
+void	ft_puttabstr(char ***array)
+{
+	int		i;
 
-#endif
+	i = -1;
+	while (*(*array + (++i)))
+		ft_putendl(*(*array + i));
+	return ;
+}

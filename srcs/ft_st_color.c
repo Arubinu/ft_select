@@ -6,13 +6,23 @@
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/09 07:26:07 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/11 04:29:54 by apergens         ###   ########.fr       */
+/*   Updated: 2014/04/29 10:09:33 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftselect.h"
 
-static void		ft_st_color_x(char *str);
+static void		ft_st_color_x(char *str)
+{
+	struct stat			sb;
+
+	if (stat(str, &sb) >= 0)
+	{
+		if (!S_ISDIR(sb.st_mode) && (sb.st_mode & S_IXUSR))
+			ft_putstr_fd("\033[31m", isatty(STDOUT_FILENO));
+	}
+	return ;
+}
 
 void			ft_st_color(char *str, int key, int i, int pos)
 {
@@ -40,17 +50,5 @@ void			ft_st_color(char *str, int key, int i, int pos)
 	}
 	else if (!active && str != NULL && ptr == NULL)
 		ft_st_color_x(str);
-	return ;
-}
-
-static void		ft_st_color_x(char *str)
-{
-	struct stat			sb;
-
-	if (stat(str, &sb) >= 0)
-	{
-		if (!S_ISDIR(sb.st_mode) && (sb.st_mode & S_IXUSR))
-			ft_putstr_fd("\033[31m", isatty(STDOUT_FILENO));
-	}
 	return ;
 }

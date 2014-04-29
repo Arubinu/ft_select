@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pf_x.c                                          :+:      :+:    :+:   */
+/*   ft_pf_d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apergens <apergens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 01:47:01 by apergens          #+#    #+#             */
-/*   Updated: 2014/01/03 02:05:55 by apergens         ###   ########.fr       */
+/*   Created: 2013/12/19 01:48:05 by apergens          #+#    #+#             */
+/*   Updated: 2014/03/18 12:41:29 by apergens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft_printf.h"
 
-char	*ft_pf_x(va_list ap, char *opts, int *ret)
+char	*ft_pf_d(va_list ap, char *opts, int *ret)
 {
 	char	*str;
-	int		on;
 
 	if (opts == NULL)
-		return ("");
-	on = 0;
-	if (*opts == 'X')
-		on = 1;
-	str = ft_xtoa(va_arg(ap, int), on);
+		return (ft_strnew(0));
+	str = ft_itoa(va_arg(ap, int));
 	*ret = ft_strlen(str);
 	return (str);
 }
